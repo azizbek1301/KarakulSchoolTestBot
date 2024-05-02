@@ -1,6 +1,6 @@
 ﻿namespace CheckTestBot.Domain.Entites
 {
-    public class User
+    public class Users
     {
         public long Id { get; set; }
         public string Name { get; set; }
