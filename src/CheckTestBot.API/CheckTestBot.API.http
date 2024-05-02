@@ -1,0 +1,6 @@
+@CheckTestBot.API_HostAddress = http://localhost:5075
+
+GET {{CheckTestBot.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
