@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CheckTestBot.Domain\CheckTestBot.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,23 +1,35 @@
+using CheckTestBot.Domain.Models;
+using CheckTestBot.Domain.Services;
+using Telegram.Bot;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var botConfig = builder.Configuration.GetSection("BotConfiguration")
+    .Get<BotConfiguration>();
 
+builder.Services.AddHttpClient("webhook")
+    .AddTypedClient<ITelegramBotClient>(httpClient
+        => new TelegramBotClient(botConfig.Token, httpClient));
+
+builder.Services.AddHostedService<ConfigureWebHook>();
+builder.Services.AddScoped<HandleUpdateService>();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseRouting();
+app.UseCors();
+
+app.UseEndpoints(endpoints =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    var token = botConfig.Token;
 
-app.UseAuthorization();
+    endpoints.MapControllerRoute(
+        name: "webhook",
+        pattern: $"bot/{token}",
+        new { controller = "Webhook", action = "Post" });
 
-app.MapControllers();
+    endpoints.MapControllers();
+});
 
 app.Run();
