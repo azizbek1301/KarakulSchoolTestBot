@@ -5,13 +5,9 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{79036ADA-FF8D-4043-B803-C05170355947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckTestBot.API", "src\CheckTestBot.API\CheckTestBot.API.csproj", "{3DC00448-F33D-48EC-9D64-66D4F243AEAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckTestBot.API", "src\CheckTestBot.API\CheckTestBot.API.csproj", "{3DC00448-F33D-48EC-9D64-66D4F243AEAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckTestBot.Application", "src\CheckTestBot.Application\CheckTestBot.Application.csproj", "{DD411710-9DA3-496E-B55C-E335890DF380}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckTestBot.Domain", "src\CheckTestBot.Domain\CheckTestBot.Domain.csproj", "{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckTestBot.Infrastructure", "src\CheckTestBot.Infrastructure\CheckTestBot.Infrastructure.csproj", "{2E230763-2754-4633-AB7D-FCF1F63FA08F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckTestBot.Domain", "src\CheckTestBot.Domain\CheckTestBot.Domain.csproj", "{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,27 +19,17 @@ Global
 		{3DC00448-F33D-48EC-9D64-66D4F243AEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DC00448-F33D-48EC-9D64-66D4F243AEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DC00448-F33D-48EC-9D64-66D4F243AEAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD411710-9DA3-496E-B55C-E335890DF380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD411710-9DA3-496E-B55C-E335890DF380}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD411710-9DA3-496E-B55C-E335890DF380}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD411710-9DA3-496E-B55C-E335890DF380}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FECF5A27-06CE-4E4D-8132-DD32AE7810A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E230763-2754-4633-AB7D-FCF1F63FA08F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E230763-2754-4633-AB7D-FCF1F63FA08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E230763-2754-4633-AB7D-FCF1F63FA08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E230763-2754-4633-AB7D-FCF1F63FA08F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3DC00448-F33D-48EC-9D64-66D4F243AEAB} = {79036ADA-FF8D-4043-B803-C05170355947}
-		{DD411710-9DA3-496E-B55C-E335890DF380} = {79036ADA-FF8D-4043-B803-C05170355947}
 		{FECF5A27-06CE-4E4D-8132-DD32AE7810A8} = {79036ADA-FF8D-4043-B803-C05170355947}
-		{2E230763-2754-4633-AB7D-FCF1F63FA08F} = {79036ADA-FF8D-4043-B803-C05170355947}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {366234AC-C7E7-4356-8EB2-46296C329076}
