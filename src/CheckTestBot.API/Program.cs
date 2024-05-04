@@ -13,7 +13,7 @@ builder.Services.AddHttpClient("webhook")
 
 builder.Services.AddHostedService<ConfigureWebHook>();
 builder.Services.AddScoped<HandleUpdateService>();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 
@@ -27,7 +27,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "webhook",
         pattern: $"bot/{token}",
-        new { controller = "Webhook", action = "Post" });
+        new { controller = "Bot", action = "Post" });
 
     endpoints.MapControllers();
 });
