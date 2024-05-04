@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace CheckTestBot.Domain.Services
 {
@@ -12,6 +13,17 @@ namespace CheckTestBot.Domain.Services
         {
             _logger=logger;
             _botClient=botClient;
+        }
+
+        public async Task HandleUpdateAsync(Update update)
+        {
+            _logger.LogInformation("Botga message keldi");
+            if(update.Message is not null)
+            {
+                await _botClient.SendTextMessageAsync(
+                    chatId: update.Message.Chat.Id,
+                    text: "Kutib turing");
+            }
         }
     }
 }
