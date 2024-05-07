@@ -30,11 +30,12 @@ namespace CheckTestBot.Domain.Services
 
 
             var webhookAddress = $@"{_botConfig.HostAddress}/bot/{_botConfig.Token}";
-            
 
-            //await botClient.SendTextMessageAsync(
-            //   chatId: 1455580577,
-            //   text: "Webhook o'rnatilmoqda");
+
+
+            await botClient.SendTextMessageAsync(
+               chatId: 1455580577,
+               text: "Webhook o'rnatilmoqda");
 
             await botClient.SetWebhookAsync(
                 url: webhookAddress,

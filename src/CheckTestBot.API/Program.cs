@@ -1,6 +1,7 @@
 using CheckTestBot.Domain.Models;
 using CheckTestBot.Domain.Services;
 using Telegram.Bot;
+using Telegram.Bot.Polling;
 
 var builder = WebApplication.CreateBuilder(args);
 
