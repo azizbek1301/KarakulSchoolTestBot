@@ -1,5 +1,4 @@
 ﻿using CheckTestBot.Domain.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
 
@@ -15,9 +14,10 @@ namespace CheckTestBot.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Update update)
+        public async Task<IActionResult> Post([FromBody] Update update,
+             CancellationToken cancellationToken)
         {
-            await _handleUpdateService.HandleUpdateAsync(update);
+            await _handleUpdateService.HandleUpdateAsync(update, cancellationToken);
             return Ok();
         }
 
