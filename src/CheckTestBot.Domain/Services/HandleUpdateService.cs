@@ -32,10 +32,22 @@ namespace CheckTestBot.Domain.Services
             return Task.CompletedTask;
         }
 
-        public async Task HandleUpdateAsync(Update update,CancellationToken cancellationToken)
+        public async Task HandleUpdateAsync(ITelegramBotClient botClient,Update update,CancellationToken cancellationToken)
         {
-
-
+            var handler = update.Type switch
+            {
+                UpdateType.Message => HandleMessageAsync(botClient, update, cancellationToken),
+                _ => HandleUnknownUpdateType(botClient, update, cancellationToken),
+            };
+           
+            try
+            {
+                await handler;
+            }
+            catch(Exception ex)
+            {
+                await Console.Out.WriteLineAsync($"Error chiqdi {ex.Message}");
+            }
 
             //var handler= update switch
             //{ 
@@ -50,7 +62,10 @@ namespace CheckTestBot.Domain.Services
             //await handler;
         }
 
-
+        private async Task HandleMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
         private async Task BotOnMessageReceived(Message message, CancellationToken cancellationToken)
         {
