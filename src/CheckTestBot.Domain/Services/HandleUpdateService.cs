@@ -37,6 +37,7 @@ namespace CheckTestBot.Domain.Services
             var handler = update.Type switch
             {
                 UpdateType.Message => HandleMessageAsync(botClient, update, cancellationToken),
+                UpdateType.EditedMessage => HandleEditedMessageAsync(botClient, update, cancellationToken),
                 _ => HandleUnknownUpdateType(botClient, update, cancellationToken),
             };
            
@@ -60,6 +61,16 @@ namespace CheckTestBot.Domain.Services
             //};
 
             //await handler;
+        }
+
+        private async Task HandleUnknownUpdateType(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task HandleEditedMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task HandleMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
