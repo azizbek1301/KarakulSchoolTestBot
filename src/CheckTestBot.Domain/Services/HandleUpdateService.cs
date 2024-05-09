@@ -32,23 +32,43 @@ namespace CheckTestBot.Domain.Services
             return Task.CompletedTask;
         }
 
-        public async Task HandleUpdateAsync(ITelegramBotClient botClient,Update update,CancellationToken cancellationToken)
+        public async Task HandleUpdateAsync(Update update,CancellationToken cancellationToken)
         {
-            var handler = update.Type switch
+
+            if (update.Message is not { } message)
+                return;
+            if (message.Text is not { } messageText)
+                return;
+
+            var chatId = message.Chat.Id;
+
+            await Console.Out.WriteLineAsync($"Received a '{messageText}' message in chat {chatId}.");
+
+            var button = new KeyboardButton("Ona tili");
+
+            if(message.Text.Contains("dotnet"))
             {
-                UpdateType.Message => HandleMessageAsync(botClient, update, cancellationToken),
-                UpdateType.EditedMessage => HandleEditedMessageAsync(botClient, update, cancellationToken),
-                _ => HandleUnknownUpdateType(botClient, update, cancellationToken),
-            };
-           
-            try
-            {
-                await handler;
+                Message sentMessage = await _botClient.SendTextMessageAsync(
+                    chatId:chatId,
+                    text: "You said:\n" + messageText,
+                    replyMarkup: new ReplyKeyboardMarkup(button),
+                    cancellationToken: cancellationToken);
             }
-            catch(Exception ex)
-            {
-                await Console.Out.WriteLineAsync($"Error chiqdi {ex.Message}");
-            }
+            //var handler = update.Type switch
+            //{
+            //    UpdateType.Message => HandleMessageAsync(_botClient, update, cancellationToken),
+            //    UpdateType.EditedMessage => HandleEditedMessageAsync(_botClient, update, cancellationToken),
+            //    _ => HandleUnknownUpdateType(_botClient, update, cancellationToken),
+            //};
+
+            //try
+            //{
+            //    await handler; 
+            //}
+            //catch(Exception ex)
+            //{
+            //    await Console.Out.WriteLineAsync($"Error chiqdi {ex.Message}");
+            //}
 
             //var handler= update switch
             //{ 
@@ -63,6 +83,26 @@ namespace CheckTestBot.Domain.Services
             //await handler;
         }
 
+        private async Task HandleMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            var message = update.Message;
+            
+            var handler = message.Type switch
+            {
+                MessageType.Text => HandleTextMessageAsync(botClient, update, cancellationToken),
+                MessageType.Video => HandleVideoMessageAsync(botClient, update, cancellationToken),
+                _ => HandleUnknownMessageTypeAsync(botClient, update, cancellationToken),
+            };
+        }
+
+        private async Task HandleVideoMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            await botClient.SendPhotoAsync(
+                chatId: update.Message.Chat.Id,
+                photo: InputFile.FromUri("https://shotkit.com/wp-content/uploads/2023/03/adobe-photoshop.jpg"),
+                cancellationToken: cancellationToken);
+        }
+
         private async Task HandleUnknownUpdateType(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
@@ -73,7 +113,13 @@ namespace CheckTestBot.Domain.Services
             throw new NotImplementedException();
         }
 
-        private async Task HandleMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+
+        private async Task HandleUnknownMessageTypeAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task HandleTextMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
