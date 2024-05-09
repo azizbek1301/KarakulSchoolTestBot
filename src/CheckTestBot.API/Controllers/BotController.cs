@@ -1,5 +1,6 @@
 ﻿using CheckTestBot.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace CheckTestBot.API.Controllers
