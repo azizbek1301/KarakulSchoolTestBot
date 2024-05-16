@@ -1,5 +1,7 @@
+using CheckTestBot.Domain.Data;
 using CheckTestBot.Domain.Models;
 using CheckTestBot.Domain.Services;
+using Microsoft.EntityFrameworkCore;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
@@ -12,9 +14,13 @@ builder.Services.AddHttpClient("webhook")
     .AddTypedClient<ITelegramBotClient>(httpClient
         => new TelegramBotClient(botConfig.Token, httpClient));
 
+
 builder.Services.AddHostedService<ConfigureWebHook>();
 builder.Services.AddScoped<HandleUpdateService>();
 builder.Services.AddControllers().AddNewtonsoftJson();
+
+builder.Services.AddDbContext<BotDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 var app = builder.Build();
 
