@@ -6,6 +6,6 @@
 
         public string SubjectName { get; set; }
 
-        public string FileId {  get; set; }
+        
     }
 }
