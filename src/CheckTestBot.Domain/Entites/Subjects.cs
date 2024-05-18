@@ -1,6 +1,8 @@
-﻿namespace CheckTestBot.Domain.Entites
+﻿using CheckTestBot.Domain.Common;
+
+namespace CheckTestBot.Domain.Entites
 {
-    public class Subjects
+    public class Subjects:Auiditable
     {
         public int Id { get; set; }
 
