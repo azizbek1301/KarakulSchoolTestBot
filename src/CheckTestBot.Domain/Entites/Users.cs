@@ -1,6 +1,8 @@
-﻿namespace CheckTestBot.Domain.Entites
+﻿using CheckTestBot.Domain.Common;
+
+namespace CheckTestBot.Domain.Entites
 {
-    public class Users
+    public class Users:Auiditable
     {
         public long Id { get; set; }
         public string Name { get; set; }
