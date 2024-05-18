@@ -1,21 +1,27 @@
-﻿using CheckTestBot.Domain.Entites;
+﻿using CheckTestBot.Domain.Application.Abstruction;
+using CheckTestBot.Domain.Entites;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace CheckTestBot.Domain.Data
 {
-    public class BotDbContext : DbContext
+    public class BotDbContext : DbContext, IApplicationDbContext
     {
 
-        public BotDbContext(DbContextOptions<BotDbContext> options, IConfiguration configuration)
+        public BotDbContext(DbContextOptions<BotDbContext> options)
             : base(options)
         {
             Database.Migrate();
 
         }
 
-        public virtual DbSet <Users> Users { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<TestQuestions> TestQuestions { get; set; }
+        public DbSet<Sertificate> Sertificates { get; set; }
 
-
+        async ValueTask<int> IApplicationDbContext.SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            await base.SaveChangesAsync(cancellationToken);
+        }
     }
 }
