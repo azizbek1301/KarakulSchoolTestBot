@@ -1,6 +1,8 @@
-﻿namespace CheckTestBot.Domain.Entites
+﻿using CheckTestBot.Domain.Common;
+
+namespace CheckTestBot.Domain.Entites
 {
-    public class Sertificate
+    public class Sertificate:Auiditable
     {
         public long Id { get; set; }
         public string FilePath { get; set; }
